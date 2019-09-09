@@ -13,7 +13,7 @@
 using namespace std;
 
 
-class Kernel {
+class BlurImageKernel {
     dim3 gridSize;
     dim3 blockSize;
 public:
@@ -26,7 +26,7 @@ public:
         this->blockSize = dim3(x, y, z);
     }
 
-    void run(const float* d_img_input, float* d_img_output, int kernel_size, int img_height, int img_width);
+    void run(const float* d_img_input, float* d_img_output, int kernel_size, int img_height, int img_width, int img_channels);
 };
 
 #endif //PORJ_IMAGE_BLUR_KERNEL_H

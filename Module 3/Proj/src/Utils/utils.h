@@ -41,18 +41,31 @@ public:
     }
 
     static Mat toMat(const float *arr, int r, int c, int channels) {
-        Mat m(r, c, 0);
+        Mat m;
 
-        int ic = 0;
-        auto &data = m.data;
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
-                for (int k = 0; k < channels; k++) {
-                    data[ic] = (unsigned char) (arr[ic]);
-                    ic++;
+        if (channels == 1) {
+            m = Mat(r, c, 0);
+            auto &data = m.data;
+            for (int i = 0; i < r * c * channels; i += 1) {
+                data[i] = (unsigned char) (arr[i]);
+            }
+
+        } else if (channels == 3) {
+            m = Mat(r, c, CV_8UC3);
+            int ic = 0;
+            auto &data = m.data;
+            for (int i = 0; i < r; i++) {
+                for (int j = 0; j < c; j++) {
+                    for (int k = 0; k < channels; k++) {
+                       data[ic] = arr[ic++];
+                    }
                 }
             }
+        } else {
+            return m;
         }
+
+
         return m;
     }
 };

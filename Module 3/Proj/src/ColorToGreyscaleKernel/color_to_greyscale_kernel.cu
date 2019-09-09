@@ -16,10 +16,10 @@ color_to_greyscale(const float *d_img_input, float *d_img_output, int img_height
     int i_thread = r * img_width + c;
 
     for (int k = 0; k < num_channels; k++) {
-        pixel_vals[k] = d_img_input[i_thread * 3 + k];
+        pixel_vals[k] = d_img_input[i_thread * num_channels + k];
     }
 
-    d_img_output[r * img_width + c] = 0.21 * pixel_vals[0] + 0.71 * pixel_vals[1] + 0.07 * pixel_vals[2];
+    d_img_output[i_thread] = 0.21 * pixel_vals[0] + 0.71 * pixel_vals[1] + 0.07 * pixel_vals[2];
 }
 
 void ColorToGreyscaleKernel::run(const float *d_img_input, float *d_img_output, int img_height, int img_width,

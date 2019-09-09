@@ -2,8 +2,8 @@
 // Created by user1 on ٩‏/٩‏/٢٠١٩.
 //
 
-#ifndef PORJ_IMAGE_BLUR_KERNEL_H
-#define PORJ_IMAGE_BLUR_KERNEL_H
+#ifndef PORJ_IMAGE_COLOR_TO_GREYSCALE_KERNEL_H
+#define PORJ_IMAGE_COLOR_TO_GREYSCALE_KERNEL_H
 
 #include <iostream>
 #include <vector>
@@ -26,7 +26,7 @@ public:
         this->blockSize = dim3(x, y, z);
     }
 
-    void run(const float* d_img_input, float* d_img_output, int img_height, int img_width, int num_channels);
+    void run(const float *d_img_input, float *d_img_output, int img_height, int img_width, int num_channels);
 };
 
-#endif //PORJ_IMAGE_BLUR_KERNEL_H
+#endif //PORJ_IMAGE_COLOR_TO_GREYSCALE_KERNEL_H
