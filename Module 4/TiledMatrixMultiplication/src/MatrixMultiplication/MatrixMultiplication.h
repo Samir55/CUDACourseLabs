@@ -86,7 +86,7 @@ public:
     int *d_matrix_a;
     int *d_matrix_b;
     int *d_matrix_res;
-    double elapsedTime;
+    double elapsed_gpu_time;
 
     MatrixMultiplication() {
         h_matrix_a = h_matrix_b = h_matrix_res = d_matrix_a = d_matrix_b = d_matrix_res = nullptr;
@@ -104,7 +104,7 @@ public:
         timer.start();
         this->runKernel(1);
         timer.stop();
-        elapsedTime = timer.elapsed();
+        elapsed_gpu_time = timer.elapsed();
 
         return this->transferOutput();
     }
@@ -140,9 +140,76 @@ public:
             }
             cout << endl;
         }
-
-        cout << "Elasped Time " << elapsedTime << endl;
+        printElapsedTime();
     }
+
+    void printElapsedTime() {
+        cout << "Input Matrix A size: " << n << " " << m << endl;
+        cout << "Input Matrix B size: " << m << " " << l << endl;
+
+        cout << "Elasped Time (GPU): " << elapsed_gpu_time << endl;
+        double elapsed_cpu_time = cpuMultiplication();
+        cout << "Elasped Time (CPU): " << elapsed_cpu_time << endl;
+        cout << "Speed Up: " << elapsed_cpu_time / elapsed_gpu_time << endl;
+    }
+
+    double cpuMultiplication() {
+        vector<vector<int>> a(n, vector<int>{});
+        vector<vector<int>> b(m, vector<int>{});
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                a[i].push_back(h_matrix_a[i * m + j]);
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < l; j++) {
+                b[i].push_back(h_matrix_b[i * l + j]);
+            }
+        }
+
+        vector<vector<int>> res(n, vector<int>(l, 0));
+
+        double start = clock();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < l; j++) {
+                int p_val = 0;
+                for (int k = 0; k < m; k++) {
+                    p_val += a[i][k] * b[k][j];
+                }
+                res[i][j] = p_val;
+            }
+        }
+
+        return (clock() - start) / CLOCKS_PER_SEC * 1000;
+    }
+
+    void buildLargeInput() {
+        freopen(("../input/input" + to_string(clock()) + ".txt").c_str(), "w", stdout);
+
+        int n = 1000;
+        int m = 100;
+        int l = 90;
+
+        cout << n << " " << m << " " << l << endl;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << int(rand()) % 100000 << " ";
+            }
+            cout << endl;
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < l; j++) {
+                cout << int(rand()) % 100000 << " ";
+            }
+            cout << endl;
+        }
+
+    }
+
 
 };
 
