@@ -1,4 +1,0 @@
-/home/EJAD.LOCAL/aabdelreheem/clion/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication"
--- Configuring done
--- Generating done
--- Build files have been written to: /home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug
