@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.cpp" "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/MatrixMultiplication/MatrixMultiplication.cpp.o"
-  "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/main.cpp" "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/main.cpp.o"
+  "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.cpp" "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/src/MatrixMultiplication/MatrixMultiplication.cpp.o"
+  "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/main.cpp" "/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

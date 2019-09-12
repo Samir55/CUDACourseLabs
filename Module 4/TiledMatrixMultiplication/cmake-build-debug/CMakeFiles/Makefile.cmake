@@ -11,10 +11,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.14.5/CMakeCCompiler.cmake"
   "CMakeFiles/3.14.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.14.5/CMakeSystem.cmake"
-  "CMakeFiles/MatrixMultiplicationExec.dir/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.cmake.pre-gen"
-  "CMakeFiles/MatrixMultiplicationExec.dir/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.depend"
-  "CMakeFiles/MatrixMultiplicationExec.dir/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.cmake.pre-gen"
-  "CMakeFiles/MatrixMultiplicationExec.dir/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.depend"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.cmake.pre-gen"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.depend"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.cmake.pre-gen"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.depend"
   "/home/EJAD.LOCAL/aabdelreheem/clion/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCInformation.cmake"
   "/home/EJAD.LOCAL/aabdelreheem/clion/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCXXInformation.cmake"
   "/home/EJAD.LOCAL/aabdelreheem/clion/bin/cmake/linux/share/cmake-3.14/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -60,10 +60,10 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/MatrixMultiplicationExec.dir/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.cmake.pre-gen"
-  "CMakeFiles/MatrixMultiplicationExec.dir/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.cmake.pre-gen"
-  "CMakeFiles/MatrixMultiplicationExec.dir/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.Debug.cmake"
-  "CMakeFiles/MatrixMultiplicationExec.dir/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.Debug.cmake"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.cmake.pre-gen"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.cmake.pre-gen"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o.Debug.cmake"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o.Debug.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

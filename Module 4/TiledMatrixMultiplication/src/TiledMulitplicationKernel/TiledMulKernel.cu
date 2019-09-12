@@ -54,10 +54,11 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
             for (int k = 0; k < TILE_SIZE; k++) {
                 p_value += s_a_matrix[tx][k] * s_b_matrix[k][ty];
             }
+
         __syncthreads();
     }
 
-    // Phase 1
+    // Phase 1 Storing the p_value which is in the output matrix borders
     if (row < n && col < l) {
         d_matrix_res[row * l + col] = p_value;
     } else {

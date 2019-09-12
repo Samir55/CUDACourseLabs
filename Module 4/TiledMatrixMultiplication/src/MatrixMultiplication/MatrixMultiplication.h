@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cmath>
 #include "../TiledMulitplicationKernel/TiledMulKernel.h"
-//#include "../BasicMulitplicationKernel/BasicMulKernel.h"
+#include "../GPUTimer/GPUTimer.h"
 
 using namespace std;
 
@@ -25,9 +25,8 @@ private:
 
 
     void readMatrices(const string &file_path) {
-        // Reading input TODO change from freopen to file input
+        // Reading input
         freopen(file_path.c_str(), "r", stdin);
-//        freopen("../input/output.txt", "w", stdout);
 
         cin >> n >> m >> l;
 
@@ -87,25 +86,62 @@ public:
     int *d_matrix_a;
     int *d_matrix_b;
     int *d_matrix_res;
+    double elapsedTime;
 
     MatrixMultiplication() {
         h_matrix_a = h_matrix_b = h_matrix_res = d_matrix_a = d_matrix_b = d_matrix_res = nullptr;
     }
 
     int *multiply(const string &file_path) {
+
         this->readMatrices(file_path);
 
         this->allocateGPUMemory();
 
         this->transferInput();
 
+        GPUTimer timer;
+        timer.start();
         this->runKernel(1);
+        timer.stop();
+        elapsedTime = timer.elapsed();
 
         return this->transferOutput();
     }
 
     pair<int, int> get_output_dim() {
         return {this->n, this->l};
+    }
+
+    void printEquation() {
+        cout << "Input Matrix A " << endl;
+        cout << "==================== " << endl;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cout << h_matrix_a[i * m + j] << " ";
+            }
+            cout << endl;
+        }
+        cout << "Input Matrix B " << endl;
+        cout << "==================== " << endl;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < l; j++) {
+                cout << h_matrix_b[i * l + j] << " ";
+            }
+            cout << endl;
+        }
+
+
+        cout << "Output Matrix " << endl;
+        cout << "==================== " << endl;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < l; j++) {
+                cout << h_matrix_res[i * l + j] << " ";
+            }
+            cout << endl;
+        }
+
+        cout << "Elasped Time " << elapsedTime << endl;
     }
 
 };

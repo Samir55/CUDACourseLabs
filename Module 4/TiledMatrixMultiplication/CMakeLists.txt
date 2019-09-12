@@ -20,14 +20,14 @@ include_directories(
 # Specify target & source files to compile it from
 cuda_add_executable(
         MatrixMultiplicationExec
-        main.cpp
-        MatrixMultiplication/MatrixMultiplication.cpp
-        MatrixMultiplication/MatrixMultiplication.h
-        BasicMulitplicationKernel/BasicMulKernel.cu
-        BasicMulitplicationKernel/BasicMulKernel.h
-        TiledMulitplicationKernel/TiledMulKernel.h
-        TiledMulitplicationKernel/TiledMulKernel.cu
-        Utils/utils.h
+        src/main.cpp
+        src/MatrixMultiplication/MatrixMultiplication.cpp
+        src/MatrixMultiplication/MatrixMultiplication.h
+        src/BasicMulitplicationKernel/BasicMulKernel.cu
+        src/BasicMulitplicationKernel/BasicMulKernel.h
+        src/TiledMulitplicationKernel/TiledMulKernel.h
+        src/TiledMulitplicationKernel/TiledMulKernel.cu
+        src/Utils/utils.h
 )
 
 # For linking ...

@@ -90,34 +90,34 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/BasicMulitplicationKernel/BasicMulKernel.cu">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/src/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/BasicMulitplicationKernel/BasicMulKernel.h">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/src/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.cpp">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/BasicMulitplicationKernel/BasicMulKernel.cu">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.h">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/BasicMulitplicationKernel/BasicMulKernel.h">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/TiledMulitplicationKernel/TiledMulKernel.cu">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.cpp">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/TiledMulitplicationKernel/TiledMulKernel.h">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.h">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/Utils/utils.h">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/TiledMulitplicationKernel/TiledMulKernel.cu">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/TiledMulitplicationKernel/TiledMulKernel.h">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/cmake-build-debug/CMakeFiles/MatrixMultiplicationExec.dir/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/Utils/utils.h">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
-		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/main.cpp">
+		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/main.cpp">
 			<Option target="MatrixMultiplicationExec"/>
 		</Unit>
 		<Unit filename="/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/CMakeLists.txt">

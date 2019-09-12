@@ -6,19 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.cpp
-MatrixMultiplication.h
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/GPUTimer/GPUTimer.h
+cuda_runtime_api.h
+-
+cuda.h
+-
 
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.cpp
+MatrixMultiplication.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.h
+
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.h
 iostream
 -
 cmath
 -
 ../TiledMulitplicationKernel/TiledMulKernel.h
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/TiledMulitplicationKernel/TiledMulKernel.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/TiledMulitplicationKernel/TiledMulKernel.h
+../GPUTimer/GPUTimer.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/GPUTimer/GPUTimer.h
 
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/TiledMulitplicationKernel/TiledMulKernel.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/TiledMulitplicationKernel/TiledMulKernel.h
 iostream
 -
 vector
@@ -28,11 +36,11 @@ cuda_runtime_api.h
 cuda.h
 -
 
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/main.cpp
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/main.cpp
 iostream
 -
 MatrixMultiplication/MatrixMultiplication.h
-/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/MatrixMultiplication/MatrixMultiplication.h
+/home/EJAD.LOCAL/aabdelreheem/CUDA/GPUAcceleratedComputing/Module 4/TiledMatrixMultiplication/src/MatrixMultiplication/MatrixMultiplication.h
 
 /usr/local/cuda/include/builtin_types.h
 device_types.h

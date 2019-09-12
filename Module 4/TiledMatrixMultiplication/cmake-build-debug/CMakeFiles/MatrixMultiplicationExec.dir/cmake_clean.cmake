@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/MatrixMultiplicationExec.dir/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o"
-  "CMakeFiles/MatrixMultiplicationExec.dir/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o"
-  "CMakeFiles/MatrixMultiplicationExec.dir/main.cpp.o"
-  "CMakeFiles/MatrixMultiplicationExec.dir/MatrixMultiplication/MatrixMultiplication.cpp.o"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/BasicMulitplicationKernel/MatrixMultiplicationExec_generated_BasicMulKernel.cu.o"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/TiledMulitplicationKernel/MatrixMultiplicationExec_generated_TiledMulKernel.cu.o"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/main.cpp.o"
+  "CMakeFiles/MatrixMultiplicationExec.dir/src/MatrixMultiplication/MatrixMultiplication.cpp.o"
   "MatrixMultiplicationExec.pdb"
   "MatrixMultiplicationExec"
 )

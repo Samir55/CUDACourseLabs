@@ -123,59 +123,59 @@ MatrixMultiplicationExec/fast:
 	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/build
 .PHONY : MatrixMultiplicationExec/fast
 
-MatrixMultiplication/MatrixMultiplication.o: MatrixMultiplication/MatrixMultiplication.cpp.o
+src/MatrixMultiplication/MatrixMultiplication.o: src/MatrixMultiplication/MatrixMultiplication.cpp.o
 
-.PHONY : MatrixMultiplication/MatrixMultiplication.o
-
-# target to build an object file
-MatrixMultiplication/MatrixMultiplication.cpp.o:
-	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/MatrixMultiplication/MatrixMultiplication.cpp.o
-.PHONY : MatrixMultiplication/MatrixMultiplication.cpp.o
-
-MatrixMultiplication/MatrixMultiplication.i: MatrixMultiplication/MatrixMultiplication.cpp.i
-
-.PHONY : MatrixMultiplication/MatrixMultiplication.i
-
-# target to preprocess a source file
-MatrixMultiplication/MatrixMultiplication.cpp.i:
-	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/MatrixMultiplication/MatrixMultiplication.cpp.i
-.PHONY : MatrixMultiplication/MatrixMultiplication.cpp.i
-
-MatrixMultiplication/MatrixMultiplication.s: MatrixMultiplication/MatrixMultiplication.cpp.s
-
-.PHONY : MatrixMultiplication/MatrixMultiplication.s
-
-# target to generate assembly for a file
-MatrixMultiplication/MatrixMultiplication.cpp.s:
-	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/MatrixMultiplication/MatrixMultiplication.cpp.s
-.PHONY : MatrixMultiplication/MatrixMultiplication.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
+.PHONY : src/MatrixMultiplication/MatrixMultiplication.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/MatrixMultiplication/MatrixMultiplication.cpp.o:
+	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/src/MatrixMultiplication/MatrixMultiplication.cpp.o
+.PHONY : src/MatrixMultiplication/MatrixMultiplication.cpp.o
 
-main.i: main.cpp.i
+src/MatrixMultiplication/MatrixMultiplication.i: src/MatrixMultiplication/MatrixMultiplication.cpp.i
 
-.PHONY : main.i
+.PHONY : src/MatrixMultiplication/MatrixMultiplication.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/MatrixMultiplication/MatrixMultiplication.cpp.i:
+	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/src/MatrixMultiplication/MatrixMultiplication.cpp.i
+.PHONY : src/MatrixMultiplication/MatrixMultiplication.cpp.i
 
-main.s: main.cpp.s
+src/MatrixMultiplication/MatrixMultiplication.s: src/MatrixMultiplication/MatrixMultiplication.cpp.s
 
-.PHONY : main.s
+.PHONY : src/MatrixMultiplication/MatrixMultiplication.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/MatrixMultiplication/MatrixMultiplication.cpp.s:
+	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/src/MatrixMultiplication/MatrixMultiplication.cpp.s
+.PHONY : src/MatrixMultiplication/MatrixMultiplication.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/MatrixMultiplicationExec.dir/build.make CMakeFiles/MatrixMultiplicationExec.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -186,12 +186,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... MatrixMultiplicationExec"
 	@echo "... edit_cache"
-	@echo "... MatrixMultiplication/MatrixMultiplication.o"
-	@echo "... MatrixMultiplication/MatrixMultiplication.i"
-	@echo "... MatrixMultiplication/MatrixMultiplication.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/MatrixMultiplication/MatrixMultiplication.o"
+	@echo "... src/MatrixMultiplication/MatrixMultiplication.i"
+	@echo "... src/MatrixMultiplication/MatrixMultiplication.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
