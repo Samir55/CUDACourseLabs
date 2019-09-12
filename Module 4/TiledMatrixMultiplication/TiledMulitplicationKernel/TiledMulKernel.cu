@@ -1,3 +1,4 @@
+#include <device_launch_parameters.h>
 #include "TiledMulKernel.h"
 
 #define cudaCheck(stmt)                                                        \
@@ -18,48 +19,51 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
     int tx = threadIdx.x, bx = blockIdx.x;
     int ty = threadIdx.y, by = blockIdx.y;
 
-    int row = ty + by * BLOCK_SIZE;
-    int col = tx + bx * BLOCK_SIZE;
+    int row = tx + bx * BLOCK_SIZE;
+    int col = ty + by * BLOCK_SIZE;
 
-    if (row >= n || col >= l)
+    int max_dim = max(n, max(m, l));
+
+    if (row >= max_dim && col >= max_dim)
         return;
 
     // Assuming the tile width = block width and tile height = block height
-    __shared__ float s_a_matrix[TILE_SIZE][TILE_SIZE];
-    __shared__ float s_b_matrix[TILE_SIZE][TILE_SIZE];
+    __shared__ int s_a_matrix[TILE_SIZE][TILE_SIZE];
+    __shared__ int s_b_matrix[TILE_SIZE][TILE_SIZE];
 
     // Loop over the tiles
     int p_value = 0.0;
-    int max_dim = max(n, max(m, l));
+
+    int a_i, b_i;
     for (int i = 0; i < int((max_dim - 1) * 1.0 / TILE_SIZE + 1); i++) {
         // Phase 0 transfer the data that this thread must transfer (one cell from matrix A and one cell from matrix b).
-        int a_i = row * m + (i * TILE_SIZE + tx);
-        int b_i = (i * TILE_SIZE + ty) * l + col;
+        a_i = row * m + (i * TILE_SIZE + ty); // row * width + col
+        b_i = (i * TILE_SIZE + tx) * l + col;
 
-        if (a_i >= 0 && a_i < n * m)
-            s_a_matrix[ty][tx] = d_matrix_a[a_i];
-        else
-            s_a_matrix[ty][tx] = 0;
+        // When to copy values
+        if (a_i < n * m && row < n && col < m)
+            s_a_matrix[tx][ty] = d_matrix_a[a_i];
 
-        if (b_i >= 0 && b_i < m * l)
-            s_b_matrix[ty][tx] = d_matrix_b[b_i];
-        else
-            s_b_matrix[ty][tx] = 0;
+        if (b_i < m * l && row < m && col < l)
+            s_b_matrix[tx][ty] = d_matrix_b[b_i];
 
         __syncthreads();
 
-        // Phase 1 after copying the data,
-        for (int j = 0; j < TILE_SIZE; j++) {
-            p_value += s_a_matrix[ty][j] * s_b_matrix[j][tx];
-        }
+        // Phase 1 after finishing copying the data,
+        if (row < n && col < l)
+            for (int k = 0; k < TILE_SIZE; k++) {
+                p_value += s_a_matrix[tx][k] * s_b_matrix[k][ty];
+            }
         __syncthreads();
-
-        if (row * l + col < n * l)
-            d_matrix_res[row * l + col] = p_value;
     }
 
-
     // Phase 1
+    if (row < n && col < l) {
+        d_matrix_res[row * l + col] = p_value;
+    } else {
+        d_matrix_res[row * l + col] = 0;
+    }
+
 }
 
 void TiledMulKernel::run(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int n, int m, int l) {

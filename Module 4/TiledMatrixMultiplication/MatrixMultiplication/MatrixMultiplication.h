@@ -42,13 +42,13 @@ private:
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                cin >> h_matrix_a[i * n + j];
+                cin >> h_matrix_a[i * m + j];
             }
         }
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < l; j++) {
-                cin >> h_matrix_b[i * m + j];
+                cin >> h_matrix_b[i * l + j];
             }
         }
     }
@@ -68,7 +68,8 @@ private:
         if (type == 1) {
             TiledMulKernel multiplyKernel;
             multiplyKernel.setBlockSize(16, 16, 1);
-            multiplyKernel.setGridSize(int(ceil(n * 1.0 / BLOCK_SIZE)), int(ceil(l * 1.0 / BLOCK_SIZE)), 1);
+            int max_dim = max(n, max(m, l));
+            multiplyKernel.setGridSize(int(ceil(max_dim * 1.0 / BLOCK_SIZE)), int(ceil(max_dim * 1.0 / BLOCK_SIZE)), 1);
             multiplyKernel.run(d_matrix_a, d_matrix_b, d_matrix_res, n, m, l);
         } else if (type == 2) {
 
@@ -77,8 +78,8 @@ private:
     }
 
     int *transferOutput() {
-        h_matrix_res = new int[m * l];
-        cudaMemcpy(h_matrix_res, d_matrix_res, sizeof(int) * m * l, cudaMemcpyDeviceToHost);
+        h_matrix_res = new int[n * l];
+        cudaMemcpy(h_matrix_res, d_matrix_res, sizeof(int) * n * l, cudaMemcpyDeviceToHost);
         return h_matrix_res;
     }
 

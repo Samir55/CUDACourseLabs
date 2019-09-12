@@ -13,8 +13,9 @@ int main() {
 
     auto dims = mat_mul.get_output_dim();
     for (int i = 0; i < dims.first; i++) {
-        for (int j = 0; j < dims.second; j++)
-            cout << res[i * dims.first + j] << " ";
+        for (int j = 0; j < dims.second; j++) {
+            cout << res[i * dims.second + j] << " ";
+        }
         cout << endl;
     }
 
