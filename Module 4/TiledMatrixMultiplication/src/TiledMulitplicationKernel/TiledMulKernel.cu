@@ -24,8 +24,9 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
 
     int max_dim = max(n, max(m, l));
 
-    if (row >= max_dim && col >= max_dim)
+    if (row >= max_dim && col >= max_dim) {
         return;
+    }
 
     // Assuming the tile width = block width and tile height = block height
     __shared__ int s_a_matrix[TILE_SIZE][TILE_SIZE];
@@ -41,10 +42,10 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
         b_i = (i * TILE_SIZE + ty) * l + col;
 
         // When to copy values
-        if (a_i < n * m && row < n && col < m)
+        if (a_i < n * m)
             s_a_matrix[ty][tx] = d_matrix_a[a_i];
 
-        if (b_i < m * l && row < m && col < l)
+        if (b_i < m * l)
             s_b_matrix[ty][tx] = d_matrix_b[b_i];
 
         __syncthreads();
@@ -56,6 +57,12 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
             }
 
         __syncthreads();
+
+//        if (ty == 0 && tx == 0 && by == 1 && bx == 0) {
+//            printf("Thread Info, Block: %d %d, Thread: %d %d\n", by, bx, ty, tx);
+//            printf("a_i: %d, b_i: %d, row: %d, col: %d, i: %d\n", a_i, b_i, row, col, i);
+//            printf("p_value: %d, %d\n", p_value, int(b_i < m * l && row < m && col < l));
+//        }
     }
 
     // Phase 1 Storing the p_value which is in the output matrix borders
@@ -64,6 +71,7 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
     } else {
         d_matrix_res[row * l + col] = 0;
     }
+
 
 }
 

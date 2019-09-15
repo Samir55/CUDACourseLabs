@@ -140,16 +140,15 @@ public:
         cpuMultiplication();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < l; j++) {
-                if (h_matrix_res[i * l + j] != cpu_res[i][j])
+                if (h_matrix_res[i * l + j] != cpu_res[i][j]) {
                     check_with_cpu_result = false;
+                }
                 cout << h_matrix_res[i * l + j] << " ";
             }
             cout << endl;
         }
 
         cout << "Same as CPU result: " << (check_with_cpu_result ? "YES" : "NO") << endl << endl;
-
-        printElapsedTime();
     }
 
     void printElapsedTime() {
@@ -194,25 +193,25 @@ public:
         return (clock() - start) / CLOCKS_PER_SEC * 1000;
     }
 
-    void buildLargeInput() {
-        freopen(("../input/input" + to_string(clock()) + ".txt").c_str(), "w", stdout);
+    void buildLargeInput(int x) {
+        freopen(("../input/input" + to_string(x) + ".txt").c_str(), "w", stdout);
 
-        int n = 1000;
-        int m = 100;
-        int l = 90;
+        int n = 17;
+        int m = 3;
+        int l = 1;
 
         cout << n << " " << m << " " << l << endl;
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                cout << int(rand()) % 100000 << " ";
+                cout << int(rand()) % 10 << " ";
             }
             cout << endl;
         }
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < l; j++) {
-                cout << int(rand()) % 100000 << " ";
+                cout << int(rand()) % 10 << " ";
             }
             cout << endl;
         }
