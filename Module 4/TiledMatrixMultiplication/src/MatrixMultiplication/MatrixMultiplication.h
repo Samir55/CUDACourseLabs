@@ -20,6 +20,7 @@ private:
     int *h_matrix_a;
     int *h_matrix_b;
     int *h_matrix_res;
+    vector<vector<int>> cpu_res;
 
     int n{}, m{}, l{};
 
@@ -133,13 +134,21 @@ public:
 
 
         cout << "Output Matrix " << endl;
-        cout << "==================== " << endl;
+        cout << "==================== " << endl << endl;
+
+        bool check_with_cpu_result = true;
+        cpuMultiplication();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < l; j++) {
+                if (h_matrix_res[i * l + j] != cpu_res[i][j])
+                    check_with_cpu_result = false;
                 cout << h_matrix_res[i * l + j] << " ";
             }
             cout << endl;
         }
+
+        cout << "Same as CPU result: " << (check_with_cpu_result ? "YES" : "NO") << endl << endl;
+
         printElapsedTime();
     }
 
@@ -169,7 +178,7 @@ public:
             }
         }
 
-        vector<vector<int>> res(n, vector<int>(l, 0));
+        cpu_res = vector<vector<int>>(n, vector<int>(l, 0));
 
         double start = clock();
         for (int i = 0; i < n; i++) {
@@ -178,7 +187,7 @@ public:
                 for (int k = 0; k < m; k++) {
                     p_val += a[i][k] * b[k][j];
                 }
-                res[i][j] = p_val;
+                cpu_res[i][j] = p_val;
             }
         }
 
