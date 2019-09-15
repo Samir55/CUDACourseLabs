@@ -19,8 +19,8 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
     int tx = threadIdx.x, bx = blockIdx.x;
     int ty = threadIdx.y, by = blockIdx.y;
 
-    int row = tx + bx * BLOCK_SIZE;
-    int col = ty + by * BLOCK_SIZE;
+    int row = ty + by * BLOCK_SIZE;
+    int col = tx + bx * BLOCK_SIZE;
 
     int max_dim = max(n, max(m, l));
 
@@ -37,22 +37,22 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
     int a_i, b_i;
     for (int i = 0; i < int((max_dim - 1) * 1.0 / TILE_SIZE + 1); i++) {
         // Phase 0 transfer the data that this thread must transfer (one cell from matrix A and one cell from matrix b).
-        a_i = row * m + (i * TILE_SIZE + ty); // row * width + col
-        b_i = (i * TILE_SIZE + tx) * l + col;
+        a_i = row * m + (i * TILE_SIZE + tx); // row * width + col
+        b_i = (i * TILE_SIZE + ty) * l + col;
 
         // When to copy values
         if (a_i < n * m && row < n && col < m)
-            s_a_matrix[tx][ty] = d_matrix_a[a_i];
+            s_a_matrix[ty][tx] = d_matrix_a[a_i];
 
         if (b_i < m * l && row < m && col < l)
-            s_b_matrix[tx][ty] = d_matrix_b[b_i];
+            s_b_matrix[ty][tx] = d_matrix_b[b_i];
 
         __syncthreads();
 
         // Phase 1 after finishing copying the data,
         if (row < n && col < l)
             for (int k = 0; k < TILE_SIZE; k++) {
-                p_value += s_a_matrix[tx][k] * s_b_matrix[k][ty];
+                p_value += s_a_matrix[ty][k] * s_b_matrix[k][tx];
             }
 
         __syncthreads();
