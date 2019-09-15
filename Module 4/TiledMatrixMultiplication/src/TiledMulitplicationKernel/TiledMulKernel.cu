@@ -44,35 +44,28 @@ __global__ void kernel(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int 
         // When to copy values
         if (a_i < n * m)
             s_a_matrix[ty][tx] = d_matrix_a[a_i];
+        else
+            s_a_matrix[ty][tx] = 0;
 
         if (b_i < m * l)
             s_b_matrix[ty][tx] = d_matrix_b[b_i];
+        else
+            s_b_matrix[ty][tx] = 0;
 
         __syncthreads();
 
         // Phase 1 after finishing copying the data,
-        if (row < n && col < l)
-            for (int k = 0; k < TILE_SIZE; k++) {
-                p_value += s_a_matrix[ty][k] * s_b_matrix[k][tx];
-            }
+        for (int k = 0; k < TILE_SIZE; k++) {
+            p_value += s_a_matrix[ty][k] * s_b_matrix[k][tx];
+        }
 
         __syncthreads();
-
-//        if (ty == 0 && tx == 0 && by == 1 && bx == 0) {
-//            printf("Thread Info, Block: %d %d, Thread: %d %d\n", by, bx, ty, tx);
-//            printf("a_i: %d, b_i: %d, row: %d, col: %d, i: %d\n", a_i, b_i, row, col, i);
-//            printf("p_value: %d, %d\n", p_value, int(b_i < m * l && row < m && col < l));
-//        }
     }
 
     // Phase 1 Storing the p_value which is in the output matrix borders
     if (row < n && col < l) {
         d_matrix_res[row * l + col] = p_value;
-    } else {
-        d_matrix_res[row * l + col] = 0;
     }
-
-
 }
 
 void TiledMulKernel::run(int *d_matrix_a, int *d_matrix_b, int *d_matrix_res, int n, int m, int l) {

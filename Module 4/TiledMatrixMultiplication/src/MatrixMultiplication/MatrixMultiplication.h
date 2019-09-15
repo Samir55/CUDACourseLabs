@@ -140,9 +140,8 @@ public:
         cpuMultiplication();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < l; j++) {
-                if (h_matrix_res[i * l + j] != cpu_res[i][j]) {
+                if (h_matrix_res[i * l + j] != cpu_res[i][j])
                     check_with_cpu_result = false;
-                }
                 cout << h_matrix_res[i * l + j] << " ";
             }
             cout << endl;
@@ -196,9 +195,9 @@ public:
     void buildLargeInput(int x) {
         freopen(("../input/input" + to_string(x) + ".txt").c_str(), "w", stdout);
 
-        int n = 17;
-        int m = 3;
-        int l = 1;
+        int n = 100;
+        int m = 90;
+        int l = 10;
 
         cout << n << " " << m << " " << l << endl;
 
