@@ -12,36 +12,36 @@
         } while (0)                                                            \
 
 
-__global__ void histogramKernel(int *vec, int n, unsigned int *out, int index_jump) {
+__global__ void histogramKernel(int *vec, int n, unsigned int *d_out) {
     // Taking care of the following: Privatization, using shared memory and using atomic operations, num bins mapping
     // Splitting into sections and determining the number of the sections for each thread
     // and howe much the thread will take
 
-    // Block size is 256 thread, so the index_jump will be 50 in each thread
+    // Block size is 256 thread, so the elements_per_threads will be 50 in each thread
     // We can make use of the caolesced memories without nothing changed
     __shared__ unsigned int s_bins[NUM_BINS];
-    int i_thread = threadIdx.x + blockIdx.x * blockDim.x;
 
-    // Initializing the bin counters
-    int i = i_thread;
-    if (i < NUM_BINS)
-        s_bins[i] = 0;
-    __syncthreads();
+    int block_start_index = blockIdx.x * blockDim.x * ELEMENTS_PER_THREAD;
+    int index = threadIdx.x + block_start_index;
 
     // Calculating hist in privatization shared memory
-    while (i < n) {
-        // Atomic add
-        atomicAdd(&s_bins[vec[i]], 1);
-        i += index_jump;
-
+    int k = 0;
+    while (index < n && k < ELEMENTS_PER_THREAD) {
+        int count = atomicAdd(&s_bins[vec[index]], 1);
+        printf("blockIndex %d thread %d cur_index %d vectorNumber %d Count %d blockStartIndex %d\n", blockIdx.x, threadIdx.x,
+               index,
+               vec[index], count, block_start_index);
+        index += ELEMENTS_PER_THREAD;
+        k++;
         __syncthreads();
+
     }
 
     // Add to the global memory
-    if (i_thread == 0 || (i_thread + 1) % 16 == 0) {
-        int i_bin = (i_thread + 1) / 16;
-        atomicAdd(&out[i_bin], s_bins[i_bin]);
-    }
+    if (threadIdx.x == 0)
+        for (int j = 0; j < NUM_BINS; j++)
+            atomicAdd(&d_out[j], s_bins[j]);
+
 }
 
 
@@ -77,9 +77,9 @@ __global__ void textHistogramKernel(char *vec, int n, unsigned int *out, int ind
 }
 
 void HistogramKernel::runHistogram(int *vec, int n, unsigned int *out) {
-    histogramKernel << < this->gridSize, this->blockSize >> > (vec, n, out, MAX_ELEMENTS_PER_THREAD);
+    histogramKernel << < this->gridSize, this->blockSize >> > (vec, n, out);
 }
 
 void HistogramKernel::runTextHistogram(char *d_in, int n, unsigned int *out) {
-    textHistogramKernel << < this->gridSize, this->blockSize >> > (d_in, n, out, MAX_ELEMENTS_PER_THREAD);
+    textHistogramKernel << < this->gridSize, this->blockSize >> > (d_in, n, out, ELEMENTS_PER_THREAD);
 }

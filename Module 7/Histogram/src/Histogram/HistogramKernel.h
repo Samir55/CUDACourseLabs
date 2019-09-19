@@ -12,11 +12,12 @@
 #include <cuda_runtime_api.h>
 #include <cuda.h>
 
-#define NUM_BINS 4096
-#define TEXT_NUM_BINS 128 // ASCII characters count
-#define MAX_ELEMENTS_PER_THREAD 50
-#define BLOCK_SIZE 256
 #define BLOCK_WIDTH 256
+#define NUM_BINS 4096
+#define ELEMENTS_PER_THREAD 256
+
+
+#define TEXT_NUM_BINS 128 // ASCII characters count
 
 using namespace std;
 
