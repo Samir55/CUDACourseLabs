@@ -21,18 +21,12 @@ __global__ void histogramKernel(int *vec, int n, unsigned int *d_out) {
     // We can make use of the caolesced memories without nothing changed
     __shared__ unsigned int s_bins[NUM_BINS];
 
-    int block_start_index = blockIdx.x * blockDim.x * ELEMENTS_PER_THREAD;
-    int index = threadIdx.x + block_start_index;
+    int index = blockIdx.x * blockDim.x + threadIdx.x;
 
     // Calculating hist in privatization shared memory
-    int k = 0;
-    while (index < n && k < ELEMENTS_PER_THREAD) {
+    while (index < n) {
         int count = atomicAdd(&s_bins[vec[index]], 1);
-        printf("blockIndex %d thread %d cur_index %d vectorNumber %d Count %d blockStartIndex %d\n", blockIdx.x, threadIdx.x,
-               index,
-               vec[index], count, block_start_index);
-        index += ELEMENTS_PER_THREAD;
-        k++;
+        index += gridDim.x * blockDim.x;
         __syncthreads();
 
     }
@@ -44,8 +38,14 @@ __global__ void histogramKernel(int *vec, int n, unsigned int *d_out) {
 
 }
 
+__global__ void truncate_output(unsigned int *d_out) {
+    int index = threadIdx.x + blockDim.x * blockIdx.x;
+    if (index < NUM_BINS)
+        d_out[index] = 127 & d_out[index];
+}
 
-__global__ void textHistogramKernel(char *vec, int n, unsigned int *out, int index_jump) {
+
+__global__ void textHistogramKernel(char *vec, int n, unsigned int *out) {
     // Taking care of the following: Privatization, using shared memory and using atomic operations, num bins mapping
     // Splitting into sections and determining the number of the sections for each thread
     // and howe much the thread will take
@@ -54,18 +54,19 @@ __global__ void textHistogramKernel(char *vec, int n, unsigned int *out, int ind
     // We can make use of the caolesced memories without nothing changed
     __shared__ unsigned int s_bins[TEXT_NUM_BINS];
     int i_thread = threadIdx.x + blockIdx.x * blockDim.x;
-
-    // Initializing the bin counters
     int i = i_thread;
+
+    // Initializing the bin counters. This Step can be removed
     if (i < TEXT_NUM_BINS)
         s_bins[i] = 0;
     __syncthreads();
 
     // Calculating hist in privatization shared memory
+
     while (i < n) {
         // Atomic add
         atomicAdd(&s_bins[int(vec[i])], 1);
-        i += index_jump;
+        i += gridDim.x * blockDim.x;
 
         __syncthreads();
     }
@@ -81,5 +82,5 @@ void HistogramKernel::runHistogram(int *vec, int n, unsigned int *out) {
 }
 
 void HistogramKernel::runTextHistogram(char *d_in, int n, unsigned int *out) {
-    textHistogramKernel << < this->gridSize, this->blockSize >> > (d_in, n, out, ELEMENTS_PER_THREAD);
+    textHistogramKernel << < this->gridSize, this->blockSize >> > (d_in, n, out);
 }
