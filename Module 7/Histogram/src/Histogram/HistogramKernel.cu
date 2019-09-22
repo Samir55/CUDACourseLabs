@@ -31,6 +31,8 @@ __global__ void histogramKernel(int *vec, int n, unsigned int *d_out) {
 
     }
 
+    __syncthreads();
+
     // Add to the global memory
     if (threadIdx.x == 0)
         for (int j = 0; j < NUM_BINS; j++)
@@ -53,8 +55,7 @@ __global__ void textHistogramKernel(char *vec, int n, unsigned int *out) {
     // Block size is 256 thread, so the index_jump will be 50 in each thread
     // We can make use of the caolesced memories without nothing changed
     __shared__ unsigned int s_bins[TEXT_NUM_BINS];
-    int i_thread = threadIdx.x + blockIdx.x * blockDim.x;
-    int i = i_thread;
+    int i = threadIdx.x + blockIdx.x * blockDim.x;
 
     // Initializing the bin counters. This Step can be removed
     if (i < TEXT_NUM_BINS)
@@ -67,14 +68,19 @@ __global__ void textHistogramKernel(char *vec, int n, unsigned int *out) {
         // Atomic add
         atomicAdd(&s_bins[int(vec[i])], 1);
         i += gridDim.x * blockDim.x;
-
         __syncthreads();
     }
 
+    __syncthreads();
+
     // Add to the global memory, as the block has 256 threads (more than the number of bins)
+    int i_thread = threadIdx.x;
     if (i_thread < TEXT_NUM_BINS) {
         atomicAdd(&out[i_thread], s_bins[i_thread]);
     }
+
+    __syncthreads();
+
 }
 
 void HistogramKernel::runHistogram(int *vec, int n, unsigned int *out) {

@@ -46,6 +46,7 @@ public:
         char *d_in;
         unsigned int *d_out;
         auto h_out = new unsigned int[TEXT_NUM_BINS];
+
         cudaMalloc((void **) &d_in, sizeof(char) * n);
         cudaMalloc((void **) &d_out, sizeof(unsigned int) * TEXT_NUM_BINS);
 
