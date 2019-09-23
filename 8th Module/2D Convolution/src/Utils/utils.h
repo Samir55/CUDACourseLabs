@@ -14,33 +14,31 @@
 using namespace cv;
 using namespace std;
 
-void allocateMemory(int img_height, int img_width, float *&d_img_input, float *&d_img_output) {
-    // allocating the needed gpu memory for the input and the output
-    cudaMalloc((void **) &d_img_input, (long long) (sizeof(float) * img_height * img_width));
-    cudaMalloc((void **) &d_img_output, (long long) (sizeof(float) * img_height * img_width));
-}
-
-class image {
-    int width;
-    int height;
-    int pitch; // No padding in our case
-    int channels;
-    float *data;
-};
-
-
 class ImageHandler {
 public:
-    static float *toArray(const Mat &m) {
+    static float *toArray(const Mat &m, int pad_size = 0) {
         int r = m.rows;
         int c = m.cols;
-        auto *arr = new float[r * c];
+        int channels = m.channels();
+        auto *arr = new float[r * (c + 2 * pad_size) * channels];
 
         int ic = 0;
         auto data = m.data;
-        for (int i = 0; i < r; i++) {
+        for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; j++) {
-                arr[ic] = float(data[ic++]);
+                for (int p = 0; p < pad_size; p++) {
+                    arr[ic++] = 0;
+                    arr[ic++] = 0;
+                    arr[ic++] = 0;
+                }
+                for (int k = 0; k < channels; k++) {
+                    arr[ic++] = data[(i * c + j) * channels + k];
+                }
+                for (int p = 0; p < pad_size; p++) {
+                    arr[ic++] = 0;
+                    arr[ic++] = 0;
+                    arr[ic++] = 0;
+                }
             }
         }
 

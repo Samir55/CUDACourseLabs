@@ -13,7 +13,7 @@ set(
 )
 # Specify include directories
 include_directories(
-        src/Kernel
+        src/StencilKernel
 )
 
 # For compilation ...
@@ -21,9 +21,10 @@ include_directories(
 cuda_add_executable(
         templateProjectExec
         src/main.cpp
-        src/Kernel/stencilKernel.cu
-        src/Kernel/stencilKernel.h
+        src/StencilKernel/stencilKernel.cu
+        src/StencilKernel/stencilKernel.h
         src/Utils/utils.h
+        src/ConvolutionKernel/
 )
 
 # For linking ...
