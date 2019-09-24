@@ -2,12 +2,12 @@
 #include "ScanKernel/scankernel.h"
 
 #define MAX_ARR_SIZE 2048*65535
-#define MAX_ELEMENT 100000
+#define MAX_ELEMENT 1000
 
 using namespace std;
 
 int main() {
-    int arr[10];
+    int arr[100000];
     int n = sizeof(arr) / sizeof(int);
 
     // Fill the array
@@ -33,16 +33,27 @@ int main() {
     ScanKernel scanKernel;
 
     scanKernel.setGridSize(1, 1, 1);
-    scanKernel.setBlockSize(1, 1, 1);
+    scanKernel.setBlockSize(BLOCK_SIZE, 1, 1);
     scanKernel.run(d_in, d_out, d_aux, n);
 
     // Copy back result
     cudaMemcpy(h_out, d_out, sizeof(long) * n, cudaMemcpyDeviceToHost);
 
     // Check the result with cpu result
+    long *cpu_res = new long[n];
+    bool ok = true;
+
     for (int i = 0; i < n; i++) {
-        cout << h_out[i] << " ";
+        cpu_res[i] = i == 0 ? arr[0] : cpu_res[i - 1] + arr[i];
+        ok = cpu_res[i] != h_out[i];
     }
+
+    cout << "Checking result with CPU... ";
+
+    if (!ok)
+        cerr << "FAIL\n";
+    else
+        cout << "\033[1;32mOK\033[0m\n";
 
     // Free memory
     cudaFree(d_in);

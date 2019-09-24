@@ -20,7 +20,7 @@ __global__ void sum(long *d_out, int n, long *aux) {
     if (i + BLOCK_SIZE < n)
         d_out[i + BLOCK_SIZE] += s_val;
 
-    printf("%d %d\n", threadIdx.x, d_out[i]);
+//    printf("%d %d\n", threadIdx.x, d_out[i]);
 }
 
 __global__ void scan(int *d_in, long *d_out, long *aux, int n) {
@@ -44,7 +44,6 @@ __global__ void scan(int *d_in, long *d_out, long *aux, int n) {
 
     __syncthreads();
 
-    printf("Samir \n");
     // Phase one reduction
     int stride = 1;
     while (stride < BLOCK_SIZE) { // The stride should be less than or equal to the half length of the segment
@@ -59,7 +58,7 @@ __global__ void scan(int *d_in, long *d_out, long *aux, int n) {
 
         __syncthreads();
     }
-    printf("Samir 2\n");
+
     // Phase two post reduction
     stride = BLOCK_SIZE;
     while (stride > 0) {
@@ -72,7 +71,7 @@ __global__ void scan(int *d_in, long *d_out, long *aux, int n) {
         stride /= 2;
         __syncthreads();
     }
-    printf("Samir 3\n");
+
     // Save in the output (first phase in saving before running the second-phase sum kernel)
     // Why this method didn't work in matrix multiplication please check (why not using i and j)
     if (i < n) {
@@ -81,9 +80,9 @@ __global__ void scan(int *d_in, long *d_out, long *aux, int n) {
     if (j < n) {
         d_out[j] = xy[threadIdx.x + BLOCK_SIZE];
     }
-    printf("Samir 4 %d \n", blockIdx.x);
+
+
     aux[blockIdx.x] = xy[2 * BLOCK_SIZE - 1]; // copy the last element in the array.
-    printf("Samir 5\n");
 }
 
 void ScanKernel::run(int *d_in, long *d_out, long *aux, int n) {
