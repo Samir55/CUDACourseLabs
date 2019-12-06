@@ -1,7 +1,3 @@
-//
-// Created by aabdelreheem@EJAD.LOCAL on ٢٣‏/٩‏/٢٠١٩.
-//
-
 #ifndef TEMPLATEPROJECT_IMAGEPROCESSOR_H
 #define TEMPLATEPROJECT_IMAGEPROCESSOR_H
 

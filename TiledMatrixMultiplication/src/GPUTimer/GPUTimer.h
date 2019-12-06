@@ -1,7 +1,3 @@
-//
-// Created by aabdelreheem@EJAD.LOCAL on ١٢‏/٩‏/٢٠١٩.
-//
-
 #ifndef MATRIXMULTIPLICATION_GPUTIMER_H
 #define MATRIXMULTIPLICATION_GPUTIMER_H
 /* Timer for GPU

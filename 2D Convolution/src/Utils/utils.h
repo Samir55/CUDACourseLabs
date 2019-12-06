@@ -1,7 +1,3 @@
-//
-// Created by user1 on ٩‏/٩‏/٢٠١٩.
-//
-
 #ifndef TEMPLATEPROJECT_UTILS_H
 #define TEMPLATEPROJECT_UTILS_H
 

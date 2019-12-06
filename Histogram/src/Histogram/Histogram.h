@@ -1,7 +1,3 @@
-//
-// Created by aabdelreheem@EJAD.LOCAL on ١٨‏/٩‏/٢٠١٩.
-//
-
 #ifndef MATRIXMULTIPLICATION_HISTOGRAM_H
 #define MATRIXMULTIPLICATION_HISTOGRAM_H
 
