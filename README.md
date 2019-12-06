@@ -1,1 +1,1 @@
-# GPUAcceleratedComputing
+# GPU Teaching Kit Labs
